@@ -1,0 +1,245 @@
+<title>brainspin v1</title>
+
+<style>
+    @keyframes spin {
+        0% {
+            transform: translateY(0%);
+        }
+        100% {
+            transform: translateY(-50%);
+        }
+    }
+
+    body {
+        height: 100vh;
+        margin: 0;
+        color: #333;
+        cursor: pointer;
+    }
+
+    .spin-list {
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
+        display: inline-block;
+    }
+
+    .spin-list .inner {
+        transition: transform .5s ease-out
+    }
+
+    .spin-list .item {
+        font: 30px monospace;
+        height: 500px;
+        /*background: #eee;*/
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center
+        
+    }
+    
+    .spin-list .item img {
+        max-height: 500px;
+    }
+    
+    .spin-list .item:nth-child(even) {
+        /*background: #fff;*/
+    }
+
+    #plus {
+        position: absolute;
+        top: calc(50% - 50px);
+        left: 0;
+        z-index: 10;
+        width: 100%;
+        height: 100px;
+        font: 100px monospace;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<div id="plus">
+    <div>+</div>
+</div>
+
+<script>
+const items = `cheap
+premium
+good smell
+bigger
+dangerous
+improved
+stinky
+vehicle
+beverage
+candy
+cuter
+colorful
+living
+building
+toy
+edible
+digital
+hairy
+long
+tiny
+transforming
+stretched
+edgy
+cool
+wearable
+throwable
+uncool
+gaming
+comic
+book
+magazine
+rubber
+input
+music
+vegetable
+online
+chat
+drugs
+porno
+interactive
+Ask your body
+Be dirty
+Cut a vital connection
+Decorate, decorate
+Distorting time
+Don't be afraid of things because they're easy to do
+Do something boring
+Do we need holes?
+Emphasize differences
+Give way to your worst impulse
+How would you have done it?
+Humanize something free of error
+Is there something missing?
+Look at a very small object, look at its centre
+Make a sudden, destructive unpredictable action; incorporate
+Machinery
+Overtly resist change
+Remember those quiet evenings
+Reverse
+Short circuit
+Simple subtraction
+Tidy up
+Turn it upside down
+Twist the spine
+Use an old idea
+Use an unacceptable color
+Use filters
+Use 'unqualified' people
+Water
+What are you really thinking about just now? Incorporate
+What is the reality of the situation?
+What mistakes did you make last time?
+What would your closest friend do?
+What wouldn't you do?
+You are an engineer`.split('\n');
+
+    for (let i = 0; i <= 172; i ++) {
+        items.push('images2/' + i + '.jpg');
+    }
+    
+    const itemsA = [];
+    const itemsB = [];
+    
+    let f = 0;
+    while (items.length) {
+        const r = Math.floor(Math.random() * items.length);
+        const target = [itemsA, itemsB][f]
+        
+        target.push(items.splice(r, 1)[0])
+        
+        f = (f + 1) % 2;
+    }
+
+    function SpinList(items=[]) {
+        let currentIndex = 0;
+
+        const innerElement = document.createElement('div');
+        innerElement.className = 'inner';
+
+        this.element = document.createElement('div');
+        this.element.className = 'spin-list';
+        this.element.appendChild(innerElement);
+
+        if (!items.length) {
+            for (let i = 0; i < 30; i ++) {
+                items.push(Math.floor(Math.random()*1000000));
+            }
+        }
+
+        for (let i = 0; i < 3; i ++) {
+            items.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'item';
+                
+                if (item.includes('.jpg')) {
+                    const image = new Image();
+                    image.src = item;
+                    itemElement.appendChild(image);
+                }
+                else {
+                    itemElement.innerHTML = item;
+                }
+
+                innerElement.appendChild(itemElement);
+            });
+        }
+
+        this.spin = () => {
+            let c = 100 + (Math.random() * 50);
+            let speed = .5;
+            let index = currentIndex;
+            let gap = 500;
+            let offset = items.length * gap - (gap/2);
+            
+
+            const move = () => {
+                index += speed;
+                if (index > items.length-1) {
+                    index -= items.length-1;
+                }
+
+                c --;
+                if (c < 100) {
+                    speed -= .03;
+                }
+                if (speed > 0) {
+                    setTimeout(move, 1000/60);
+                }
+                else {
+                    index = Math.floor(index);
+                    
+                    currentIndex = index;
+                    console.log(items[currentIndex]);
+                }
+                innerElement.style.transform = `translateY(calc(${index*-gap-offset}px + 50vh))`;
+            };
+            move();
+        }
+    }
+
+    window.addEventListener('load', () => {
+        const listA = new SpinList(itemsA);
+        document.body.appendChild(listA.element);
+        const listB = new SpinList(itemsB);
+        document.body.appendChild(listB.element);
+        
+        function spin() {
+            listA.spin();
+            listB.spin();
+        }
+        
+        document.body.addEventListener('click', spin);
+
+        spin();
+    });
+</script>
