@@ -30,3 +30,5 @@ and hey ! people liked it. i don't think it led to any projects. but it led to g
     - yes
 - why is the images folder called images2 ?
     - it was probably the second one
+- what's your favorite image ?
+    - ![](images2/75.jpg) https://twitter.com/DrCameronFetter/status/1331721904990916616
