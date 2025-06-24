@@ -8,7 +8,7 @@ i created brainspin ( on my own time, lawyers. on my own time 🙂 ) for use in 
 
 basically i just went through my twitter likes and pulled crunchy and tasty pics and threw them in a folder.
 
-then made i this kind of slot machine pairing interface. super simple.
+then i made this kind of slot machine pairing interface. super simple.
 
 it also has some words amongst the imgs. i stole oblique strategies ( thanks brian ). and also threw some additional inspiring words like porno and good smell.
 
