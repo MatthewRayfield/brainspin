@@ -4,7 +4,7 @@ brainstorms are hard. wtf do i sayy ? do i just stare at the wall ? yes to both.
 
 ### UNTIL NOW
 
-i created brainspin ( on my own time, lawyers. on my own time 🙂 ) for use in brainstorms at M---F.
+i created brainspin ( on my own time, lawyers. on my own time 🙂 ) for use in brainstorms at M***F.
 
 basically i just went through my twitter likes and pulled crunchy and tasty pics and threw them in a folder.
 
