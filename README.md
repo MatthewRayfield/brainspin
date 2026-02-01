@@ -1,4 +1,4 @@
-# brainspin v1
+# brainspin
 
 brainstorms are hard. wtf do i sayy ? do i just stare at the wall ? yes to both.
 
